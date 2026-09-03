@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Earning Hero BD</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f5f7fb;
+  color:#111827;
+  padding:16px 16px 95px;
+}
+
+.app{
+  max-width:520px;
+  margin:auto;
+}
+
+/* HEADER */
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.logo-area h1{
+  font-size:20px;
+  font-weight:800;
+}
+
+.logo-area p{
+  margin-top:5px;
+  font-size:13px;
+  color:#6b7280;
+}
+
+.menu{
+  font-size:25px;
+  color:#6b7280;
+}
+
+/* PAGES */
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+/* BALANCE */
+.balance-card{
+  background:#e9f0ff;
+  border-radius:20px;
+  padding:25px 15px;
+  text-align:center;
+  margin-bottom:16px;
+}
+
+.balance-label{
+  font-size:13px;
+  color:#6b7280;
+}
+
+.balance{
+  font-size:36px;
+  font-weight:800;
+  margin:6px 0;
+}
+
+.points{
+  font-size:13px;
+  color:#6b7280;
+}
+
+/* ACTIONS */
+.action-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.action-btn{
+  border:none;
+  border-radius:14px;
+  padding:15px 10px;
+  font-size:14px;
+  font-weight:700;
+  cursor:pointer;
+  background:white;
+  color:#111827;
+  border:1px solid #e5e7eb;
+}
+
+.action-btn.primary{
+  background:#2563eb;
+  color:white;
+  border-color:#2563eb;
+}
+
+.action-btn:active{
+  transform:scale(.98);
+}
+
+.action-btn:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+}
+
+.limit{
+  text-align:center;
+  margin:12px 0 22px;
+  font-size:12px;
+  color:#6b7280;
+}
+
+/* SECTION */
+.section-title{
+  font-size:17px;
+  font-weight:800;
+  margin-bottom:10px;
+}
+
+/* TASK */
+.task{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  background:white;
+  border:1px solid #e5e7eb;
+  border-radius:15px;
+  padding:14px;
+  margin-bottom:9px;
+}
+
+.task-info{
+  min-width:0;
+}
+
+.task-name{
+  font-size:14px;
+  font-weight:700;
+}
+
+.task-reward{
+  font-size:12px;
+  color:#6b7280;
+  margin-top:4px;
+}
+
+.task-btn{
+  border:none;
+  border-radius:10px;
+  padding:10px 14px;
+  background:#2563eb;
+  color:white;
+  font-size:12px;
+  font-weight:700;
+  cursor:pointer;
+  white-space:nowrap;
+}
+
+.task-btn:disabled{
+  background:#d1d5db;
+  color:#6b7280;
+}
+
+/* INFO CARD */
+.info-card{
+  background:white;
+  border:1px solid #e5e7eb;
+  border-radius:16px;
+  padding:16px;
+  margin-bottom:12px;
+}
+
+.info-row{
+  display:flex;
+  justify-content:space-between;
+  padding:9px 0;
+  border-bottom:1px solid #f0f0f0;
+  font-size:14px;
+}
+
+.info-row:last-child{
+  border-bottom:none;
+}
+
+.info-label{
+  color:#6b7280;
+}
+
+.info-value{
+  font-weight:700;
+}
+
+/* PROFILE */
+.profile-card{
+  text-align:center;
+  background:white;
+  border:1px solid #e5e7eb;
+  border-radius:18px;
+  padding:24px;
+}
+
+.avatar{
+  width:65px;
+  height:65px;
+  margin:auto;
+  border-radius:50%;
+  background:#e9f0ff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  margin-bottom:10px;
+}
+
+.profile-name{
+  font-size:18px;
+  font-weight:800;
+}
+
+.profile-id{
+  color:#6b7280;
+  font-size:12px;
+  margin-top:5px;
+}
+
+/* WITHDRAW */
+.withdraw-box{
+  background:white;
+  border:1px solid #e5e7eb;
+  border-radius:18px;
+  padding:18px;
+}
+
+.input{
+  width:100%;
+  border:1px solid #d1d5db;
+  border-radius:12px;
+  padding:13px;
+  margin-top:10px;
+  outline:none;
+  font-size:14px;
+}
+
+.withdraw-submit{
+  width:100%;
+  border:none;
+  border-radius:13px;
+  padding:14px;
+  margin-top:12px;
+  background:#2563eb;
+  color:white;
+  font-weight:700;
+  cursor:pointer;
+}
+
+/* BOTTOM NAV */
+.bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:white;
+  border-top:1px solid #e5e7eb;
+  display:flex;
+  justify-content:center;
+  z-index:1000;
+}
+
+.nav-inner{
+  width:100%;
+  max-width:520px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+}
+
+.nav-btn{
+  border:none;
+  background:white;
+  padding:11px 5px 10px;
+  cursor:pointer;
+  color:#6b7280;
+  font-size:11px;
+  font-weight:700;
+}
+
+.nav-icon{
+  display:block;
+  font-size:21px;
+  margin-bottom:3px;
+}
+
+.nav-btn.active{
+  color:#2563eb;
+}
+
+/* TOAST */
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:80px;
+  transform:translateX(-50%) translateY(20px);
+  background:#111827;
+  color:white;
+  padding:12px 18px;
+  border-radius:12px;
+  font-size:13px;
+  opacity:0;
+  pointer-events:none;
+  transition:.3s;
+  z-index:9999;
+  white-space:nowrap;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
+/* MODAL */
+.modal-bg{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  z-index:5000;
+}
+
+.modal-bg.active{
+  display:flex;
+}
+
+.modal{
+  width:100%;
+  max-width:390px;
+  background:white;
+  border-radius:20px;
+  padding:22px;
+}
+
+.modal h2{
+  font-size:20px;
+  margin-bottom:7px;
+}
+
+.modal p{
+  color:#6b7280;
+  font-size:13px;
+  margin-bottom:17px;
+}
+
+.modal-buttons{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:5px;
+}
+
+.modal-btn{
+  border:none;
+  border-radius:12px;
+  padding:13px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.cancel{
+  background:#f3f4f6;
+}
+
+.confirm{
+  background:#2563eb;
+  color:white;
+}
+
+/* RESPONSIVE */
+@media(max-width:360px){
+
+  body{
+    padding:12px 12px 95px;
+  }
+
+  .balance{
+    font-size:31px;
+  }
+
+  .task-btn{
+    padding:9px 11px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <!-- HEADER -->
+  <div class="header">
+
+    <div class="logo-area">
+
+      <h1>&#x1F4B0; Earning Hero BD</h1>
+
+      <p id="welcomeText">
+        Welcome &#x1F44B;
+      </p>
+
+    </div>
+
+    <div class="menu">
+      ⋮
+    </div>
+
+  </div>
+
+
+  <!-- ================= HOME ================= -->
+
+  <div class="page active" id="homePage">
+
+    <div class="balance-card">
+
+      <div class="balance-label">
+        Your Balance
+      </div>
+
+      <div class="balance" id="balance">
+        0
+      </div>
+
+      <div class="points">
+        Points
+      </div>
+
+    </div>
+
+
+    <div class="action-grid">
+
+      <button
+        class="action-btn primary"
+        id="watchAdBtn"
+        type="button">
+
+        &#x25B6; Watch Ads
+
+      </button>
+
+
+      <button
+        class="action-btn"
+        id="homeWithdrawBtn"
+        type="button">
+
+        &#x1F4B8; Withdraw
+
+      </button>
+
+    </div>
+
+
+    <div class="limit">
+
+      Today's ads:
+      <b id="adsUsed">4</b>
+      /
+      <b id="adsLimit">20</b>
+
+    </div>
+
+
+    <div class="info-card">
+
+      <div class="info-row">
+
+        <span class="info-label">
+          Today's Earnings
+        </span>
+
+        <span class="info-value" id="todayEarned">
+          +0
+        </span>
+
+      </div>
+
+
+      <div class="info-row">
+
+        <span class="info-label">
+          Total Earnings
+        </span>
+
+        <span
+          class="info-value"
+          id="totalEarned">
+
+          0
+
+        </span>
+
+      </div>
+
+
+      <div class="info-row">
+
+        <span class="info-label">
+          Daily Limit
+        </span>
+
+        <span class="info-value" id="dailyLimitText">
+          20 Ads
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= TASKS ================= -->
+
+  <div class="page" id="tasksPage">
+
+    <div class="section-title">
+      &#x1F4CB; Daily Tasks
+    </div>
+
+
+    <div class="limit">
+      Complete tasks and earn points.
+    </div>
+
+
+    <div class="task">
+
+      <div class="task-info">
+
+        <div class="task-name">
+          Watch an Advertisement
+        </div>
+
+        <div class="task-reward">
+          Reward: +50 points
+        </div>
+
+      </div>
+
+      <button
+        class="task-btn"
+        data-reward="50"
+        type="button">
+
+        Start
+
+      </button>
+
+    </div>
+
+
+    <div class="task">
+
+      <div class="task-info">
+
+        <div class="task-name">
+          Visit Sponsor
+        </div>
+
+        <div class="task-reward">
+          Reward: +30 points
+        </div>
+
+      </div>
+
+      <button
+        class="task-btn"
+        data-reward="30"
+        type="button">
+
+        Start
+
+      </button>
+
+    </div>
+
+
+    <div class="task">
+
+      <div class="task-info">
+
+        <div class="task-name">
+          Join Channel
+        </div>
+
+        <div class="task-reward">
+          Reward: +100 points
+        </div>
+
+      </div>
+
+      <button
+        class="task-btn"
+        data-reward="100"
+        type="button">
+
+        Start
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= WITHDRAW ================= -->
+
+  <div class="page" id="withdrawPage">
+
+    <div class="section-title">
+      &#x1F4B8; Withdraw
+    </div>
+
+
+    <div class="withdraw-box">
+
+      <div class="info-row">
+
+        <span class="info-label">
+          Available Balance
+        </span>
+
+        <span
+          class="info-value"
+          id="withdrawBalance">
+
+          0
+
+        </span>
+
+      </div>
+
+
+      <div class="info-row">
+
+        <span class="info-label">
+          Minimum Withdrawal
+        </span>
+
+        <span class="info-value">
+          500 Points
+        </span>
+
+      </div>
+
+
+      <input
+        class="input"
+        id="withdrawAmount"
+        type="number"
+        placeholder="Enter points">
+
+
+      <input
+        class="input"
+        id="paymentNumber"
+        type="text"
+        placeholder="bKash / Nagad number">
+
+
+      <button
+        class="withdraw-submit"
+        id="submitWithdraw"
+        type="button">
+
+        Submit Withdrawal
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= PROFILE ================= -->
+
+  <div class="page" id="profilePage">
+
+    <div class="profile-card">
+
+      <div class="avatar">
+        &#x1F464;
+      </div>
+
+      <div
+        class="profile-name"
+        id="profileName">
+
+        User
+
+      </div>
+
+      <div
+        class="profile-id"
+        id="profileId">
+
+        Telegram User
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="info-card"
+      style="margin-top:12px;">
+
+      <div class="info-row">
+
+        <span class="info-label">
+          Balance
+        </span>
+
+        <span
+          class="info-value"
+          id="profileBalance">
+
+          1,250
+
+        </span>
+
+      </div>
+
+
+      <div class="info-row">
+
+        <span class="info-label">
+          Total Earned
+        </span>
+
+        <span
+          class="info-value"
+          id="profileEarned">
+
+          1,250
+
+        </span>
+
+      </div>
+
+
+      <div class="info-row">
+
+        <span class="info-label">
+          Account Status
+        </span>
+
+        <span class="info-value">
+          Active
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ================= BOTTOM NAV ================= -->
+
+<div class="bottom-nav">
+
+  <div class="nav-inner">
+
+    <button
+      class="nav-btn active"
+      data-page="homePage"
+      type="button">
+
+      <span class="nav-icon">🏠</span>
+      Home
+
+    </button>
+
+
+    <button
+      class="nav-btn"
+      data-page="tasksPage"
+      type="button">
+
+      <span class="nav-icon">&#x1F4CB;</span>
+      Tasks
+
+    </button>
+
+
+    <button
+      class="nav-btn"
+      data-page="withdrawPage"
+      type="button">
+
+      <span class="nav-icon">&#x1F4B8;</span>
+      Withdraw
+
+    </button>
+
+
+    <button
+      class="nav-btn"
+      data-page="profilePage"
+      type="button">
+
+      <span class="nav-icon">&#x1F464;</span>
+      Profile
+
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div
+  class="toast"
+  id="toast">
+
+</div>
+
+
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script>
+
+/* =========================
+   SETTINGS
+========================= */
+
+const SETTINGS = {
+
+  adReward: 50,
+
+  dailyAdLimit: 20,
+
+  minimumWithdraw: 500
+
+};
+
+
+/* =========================
+   APP DATA
+========================= */
+
+let balance = 0;
+let totalEarned = 0;
+let adsUsed = 0;
+let todayEarned = 0;
+let currentUser = null;
+let appReady = false;
+
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const balanceEl =
+  document.getElementById("balance");
+
+const adsUsedEl =
+  document.getElementById("adsUsed");
+
+const adsLimitEl =
+  document.getElementById("adsLimit");
+
+const watchAdBtn =
+  document.getElementById("watchAdBtn");
+
+const toast =
+  document.getElementById("toast");
+
+
+/* =========================
+   UPDATE DISPLAY
+========================= */
+
+function updateDisplay(){
+
+  balanceEl.textContent =
+    balance.toLocaleString();
+
+  adsUsedEl.textContent =
+    adsUsed;
+
+  adsLimitEl.textContent =
+    SETTINGS.dailyAdLimit;
+
+  document.getElementById(
+    "totalEarned"
+  ).textContent =
+    totalEarned.toLocaleString();
+
+  document.getElementById(
+    "todayEarned"
+  ).textContent =
+    "+" + todayEarned.toLocaleString();
+
+  document.getElementById(
+    "dailyLimitText"
+  ).textContent =
+    SETTINGS.dailyAdLimit + " Ads";
+
+  document.getElementById(
+    "withdrawBalance"
+  ).textContent =
+    balance.toLocaleString();
+
+  document.getElementById(
+    "profileBalance"
+  ).textContent =
+    balance.toLocaleString();
+
+  document.getElementById(
+    "profileEarned"
+  ).textContent =
+    totalEarned.toLocaleString();
+
+
+  if(adsUsed >= SETTINGS.dailyAdLimit){
+
+    watchAdBtn.disabled = true;
+
+    watchAdBtn.textContent =
+      "Limit Reached";
+
+  }
+
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+function showToast(message){
+
+  toast.textContent = message;
+
+  toast.classList.add("show");
+
+  setTimeout(function(){
+
+    toast.classList.remove("show");
+
+  },1800);
+
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+const navButtons =
+  document.querySelectorAll(".nav-btn");
+
+const pages =
+  document.querySelectorAll(".page");
+
+
+navButtons.forEach(function(button){
+
+  button.addEventListener(
+    "click",
+    function(){
+
+      const pageId =
+        button.dataset.page;
+
+
+      pages.forEach(function(page){
+
+        page.classList.remove("active");
+
+      });
+
+
+      navButtons.forEach(function(btn){
+
+        btn.classList.remove("active");
+
+      });
+
+
+      document
+        .getElementById(pageId)
+        .classList.add("active");
+
+
+      button.classList.add("active");
+
+    }
+  );
+
+});
+
+
+/* =========================
+   WATCH ADS
+========================= */
+
+watchAdBtn.addEventListener(
+  "click",
+  function(){
+
+    if(!appReady){
+      showToast("Please wait...");
+      return;
+    }
+
+    if(adsUsed >= SETTINGS.dailyAdLimit){
+      showToast("Today's limit is finished.");
+      return;
+    }
+
+    showToast("Ad system is not connected yet.");
+
+  }
+);
+
+
+
+/* =========================
+   TASKS
+========================= */
+
+const taskButtons =
+  document.querySelectorAll(
+    ".task-btn"
+  );
+
+const SPONSOR_LINK =
+  "https://omg10.com/4/10524210";
+
+taskButtons.forEach(function(button, index){
+
+  button.addEventListener(
+    "click",
+    async function(){
+
+      if(!appReady){
+        showToast("Please wait...");
+        return;
+      }
+
+      const taskId = index + 1;
+
+      button.disabled = true;
+      const originalText = button.textContent;
+      button.textContent = "Working...";
+
+      try{
+
+        // Sponsor task: open the supplied sponsor link first.
+        if(taskId === 2){
+          window.open(
+            SPONSOR_LINK,
+            "_blank"
+          );
+
+          showToast("Sponsor opened. Please wait...");
+
+          await new Promise(function(resolve){
+            setTimeout(resolve, 10000);
+          });
+        }
+
+        // For task 1 and task 3, this is the current basic claim flow.
+        // Real ad/channel verification will be added separately.
+        const tg = window.Telegram?.WebApp;
+
+        if(!tg || !tg.initData){
+          throw new Error(
+            "Telegram authentication missing."
+          );
+        }
+
+        const response = await fetch(
+          "/api/claim-task",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              initData: tg.initData,
+              taskId: taskId
+            })
+          }
+        );
+
+        const data = await response.json();
+
+        if(!response.ok || !data.success){
+          throw new Error(
+            data.message ||
+            "Task could not be completed"
+          );
+        }
+
+        balance =
+          Number(data.balance || 0);
+
+        totalEarned =
+          Number(data.total_earned || 0);
+
+        todayEarned +=
+          Number(data.reward || 0);
+
+        updateDisplay();
+
+        showToast(
+          "🎉 +" +
+          data.reward +
+          " points added!"
+        );
+
+        button.textContent = "Completed";
+
+      }catch(error){
+
+        console.error(
+          "Task Error:",
+          error
+        );
+
+        showToast(
+          error.message ||
+          "Something went wrong."
+        );
+
+        button.disabled = false;
+        button.textContent = originalText;
+        return;
+      }
+
+      // Keep completed task disabled for this page session.
+      button.disabled = true;
+
+    }
+  );
+
+});
+
+
+
+/* =========================
+   WITHDRAW
+========================= */
+
+function submitWithdrawal(){
+
+  if(!appReady){
+    showToast("Please wait...");
+    return;
+  }
+
+  showToast("Withdrawal system is not connected yet.");
+
+}
+
+
+
+document
+  .getElementById(
+    "submitWithdraw"
+  )
+  .addEventListener(
+    "click",
+    submitWithdrawal
+  );
+
+
+/* =========================
+   HOME WITHDRAW BUTTON
+========================= */
+
+document
+  .getElementById(
+    "homeWithdrawBtn"
+  )
+  .addEventListener(
+    "click",
+    function(){
+
+      pages.forEach(function(page){
+
+        page.classList.remove(
+          "active"
+        );
+
+      });
+
+
+      navButtons.forEach(function(btn){
+
+        btn.classList.remove(
+          "active"
+        );
+
+      });
+
+
+      document
+        .getElementById(
+          "withdrawPage"
+        )
+        .classList.add("active");
+
+
+      document
+        .querySelector(
+          '[data-page="withdrawPage"]'
+        )
+        .classList.add("active");
+
+    }
+  );
+
+
+/* =========================
+   TELEGRAM + BACKEND
+========================= */
+
+async function loadUserFromBackend(){
+
+  if(!window.Telegram || !window.Telegram.WebApp){
+    showToast("Open this app inside Telegram.");
+    return;
+  }
+
+  const tg = window.Telegram.WebApp;
+
+  tg.ready();
+  tg.expand();
+
+  if(!tg.initData){
+    showToast("Telegram authentication data is missing.");
+    return;
+  }
+
+  try{
+
+    const response = await fetch("/api/user", {
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        initData:tg.initData
+      })
+    });
+
+    const data = await response.json();
+
+    if(!response.ok || !data.success){
+      throw new Error(data.message || "Failed to load user");
+    }
+
+    currentUser = data.user;
+
+    balance = Number(currentUser.balance || 0);
+    totalEarned = Number(currentUser.total_earned || 0);
+    adsUsed = Number(currentUser.daily_ads || 0);
+    todayEarned = adsUsed * SETTINGS.adReward;
+
+    const telegramUser = tg.initDataUnsafe?.user;
+
+    const name =
+      currentUser.first_name ||
+      telegramUser?.first_name ||
+      telegramUser?.username ||
+      "User";
+
+    welcomeText.textContent = "Welcome, " + name + " 👋";
+    document.getElementById("profileName").textContent = name;
+
+    if(currentUser.username){
+      document.getElementById("profileId").textContent =
+        "@" + currentUser.username;
+    }else if(telegramUser?.username){
+      document.getElementById("profileId").textContent =
+        "@" + telegramUser.username;
+    }
+
+    updateDisplay();
+    appReady = true;
+
+  }catch(error){
+
+    console.error(error);
+    showToast("Could not load your account.");
+
+  }
+
+}
+
+
+
+/* =========================
+   START
+========================= */
+
+updateDisplay();
+loadUserFromBackend();
+
+</script>
+
+</body>
+</html>
